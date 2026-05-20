@@ -3,65 +3,74 @@
     <template id="report_invoice_willmantech">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                    <div class="page">
-                        <t t-set="display_discount" t-value="any(line.discount for line in doc.invoice_line_ids)"/>
-                        <div class="row">
-                            <div class="col-6">
-                                <h2>WillmanTech S.L.</h2>
-                                <p>
-                                    C/ Falsa, 123<br/>
-                                    28080 Madrid<br/>
-                                    CIF: B12345678
-                                </p>
-                            </div>
-                            <div class="col-6 text-right">
-                                <h4>Factura</h4>
-                                <div t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-                                    
-                            </div>
-                        </div> 
-                    </div>
-                        <hr/>
-                        <div class="row mt32 mb32">
-                            <div class="col-6">
-                                <p><strong>Fecha:</strong> <t t-esc="doc.invoice_date"/></p>
-                                <p><strong>Número de factura:</strong> <t t-esc="doc.name"/></p>
-                            </div>
-                            <div class="col-6 text-right">
-                                <p><strong>Vendedor:</strong> <t t-esc="doc.user_id.name"/></p>
-                            </div>
-                        </div>   
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio unitario</th>
-                                    <th>Descuento</th>
-                                    <th>Subtotal</th>
-                                </tr>
-                            </thead>
-                            <body>
-                                <t t-foreach="doc.invoice_line_ids" t-as="line">
-                                    <tr>
-                                        <td><t t-esc="line.product_id.name"/></td>
-                                        <td class="text-right"><t t-esc="line.quantity"/></td>
-                                        <td class="text-right"><t t-esc="line.price_unit"/></td>
-                                        <td class="text-right"><t t-esc="line.discount"/>%</td>
-                                        <td class="text-right"><t t-esc="line.price_subtotal"/></td>
-                                    </tr>
+                <div class="page">
+                    <h2>
+                        Factura - WillmanTech S.L.
+                    </h2>
+                    <p>
+                        <strong>
+                            Número:
+                        </strong>
+                        <span t-field="doc.name" />
+                    </p>
+                    <p>
+                        <strong>
+                            Fecha:
+                        </strong>
+                        <span t-field="doc.invoice_date" />
+                    </p>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Producto
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                                <th>
+                                    Precio
+                                </th>
+                                <t t-if="any(line.discount for line in doc.invoice_line_ids)">
+                                    <th>
+                                        Descuento
+                                    </th>
                                 </t>
-                            </body>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="4" class="text-right"><strong>Total:</strong></td>
-                                    <td class="text-right"><t t-esc="doc.amount_total"/></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                </t>
+                                <th>
+                                    Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.invoice_line_ids" t-as="line">
+                                <td>
+                                    <span t-field="line.name" />
+                                </td>
+                                <td>
+                                    <span t-field="line.quantity" />
+                                </td>
+                                <td>
+                                    <span t-field="line.price_unit" />
+                                </td>
+                                <t t-if="any(l.discount for l in doc.invoice_line_ids)">
+                                    <td>
+                                        <span t-field="line.discount" />
+                                    </td>
+                                </t>
+                                <td>
+                                    <span t-field="line.price_subtotal" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>
+                        
+                        Total Neto:
+                        
+                        <span t-field="doc.amount_total" />
+                    </h3>
+                </div>
             </t>
         </t>
     </template>
-            </odoo>  
+</odoo>
