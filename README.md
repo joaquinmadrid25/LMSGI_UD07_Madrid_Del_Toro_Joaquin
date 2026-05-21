@@ -1,6 +1,25 @@
 # Manual de Explotacion - WillmanTech S.L.
 ## Basado en ISO/IEC/IEEE 26514:2022
 
+**Nombre y Apeliido**:Joaquin Madrid del Toro
+
+**Curso**:Desarrollo de Aplicacion Web
+
+**Trimestre**:3º
+
+**Fecha**:21/05/2026
+
+# Codigo de Instalacion
+
+- report_invoice_willmantech.xml:
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/a25477be-4c8e-41c3-af34-fa06a1ff4b3e" />
+
+- invoice_ubl.xml:
+
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/4742efc6-7d66-4bff-83e7-2d45b3f18cd0" />
+
+
 ---
 # 1.Introduccion y Arquitectura
 
@@ -78,4 +97,6 @@ Error de permisos
 Comprobar permisos de carpetas:
 
 chmod -R 755 ./data
+
+
 
